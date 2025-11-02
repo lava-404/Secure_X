@@ -1,103 +1,78 @@
-import Image from "next/image";
 
+"use client"
+import { useRouter } from "next/navigation"
+import Cards from "./components/Cards"
+import { Home as HomeIcon } from "lucide-react"
+import { Vault, Sparkles, Info } from "lucide-react"
+import Link from "next/link";
+import Demo from "./components/Demo"
+import SecurityPromise from "./components/PromiseSection"
+import Footer from "./components/Footer"
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter()
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const handleClick = () => {
+
+    router.push('/auth')
+  }
+  return (
+    <>
+    <div className="relative bg-[url('/images/bg.png')] sm:bg-contain bg-cover sm:bg-cover bg-bottom bg-no-repeat min-h-screen text-white overflow-hidden pb-16">
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-0"></div>
+
+  {/* Header */}
+  <header className="sticky top-0 relative z-20 w-8/12 max-w-5xl mx-auto flex justify-between items-center px-8 sm:px-10 py-4 bg-white/2 backdrop-blur-sm border border-white/30 rounded-[50px] shadow-lg mt-12 lg:w-10/12">
+    <h1 className="text-lg font-bold text-white ">SecureX</h1>
+    <nav className="flex gap-4 sm:gap-6 text-lg text-white">
+    <Link href="/" className="flex items-center justify-center">
+          <span className="hidden sm:inline">Home</span>
+          <HomeIcon className="sm:hidden w-6 h-6" />
+        </Link>
+        <Link href="/vault" className="flex items-center justify-center">
+          <span className="hidden sm:inline">Vault</span>
+          <Vault className="sm:hidden w-6 h-6" />
+        </Link>
+        <Link href="/generator" className="flex items-center justify-center">
+          <span className="hidden sm:inline">Generate</span>
+          <Sparkles className="sm:hidden w-6 h-6" />
+        </Link>
+        <Link href="/info" className="flex items-center justify-center">
+          <span className="hidden sm:inline">Info</span>
+          <Info className="sm:hidden w-6 h-6" />
+        </Link>
+    </nav>
+  </header>
+
+  {/* Hero Section */}
+  <div className="relative z-10 width-1/2 mt-30 ml-10 lg:min-h-[40vh] min-h-[30vh] px-6 sm:px-10 md:px-20 ml-12 lg:ml-70 lg:mt-50">
+    {/* Left Hero Text */}
+    <div className="max-w-6xl md:w-1/2 space-y-6">
+      <div
+        className="font-instrument lg:text-[clamp(2rem,5vw,10.5rem)] text-[clamp(2rem,8vw,10.5rem)] leading-tight  mx-auto"
+        style={{ fontFamily: "'Instrument Serif', serif" }}
+      >
+        Your Secrets. Locked,<br />Loaded and Yours Only
+      </div>
+
+      <p className="text-gray-300 lg:text-[clamp(0.9rem,1.2vw,1.4rem)] text-[clamp(1.2rem,0.3vw,4.4rem)] leading-relaxed lg:max-w-6xl max-w-sm">
+        A fast, private vault for your passwords. Generate, Save, and Manage them all in one place.
+      </p>
+
+      <button onClick={handleClick} className="bg-white hover:cursor-pointer text-black px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition-all duration-300">
+        Get Started
+      </button>
     </div>
+
+    {/* Right Side Cards */}
+    
+  </div>
+  <Cards />
+  
+</div>
+   <Demo />
+   <SecurityPromise />
+   <Footer />
+   </>
   );
 }

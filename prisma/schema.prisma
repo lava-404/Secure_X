@@ -1,0 +1,26 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URL")  // make sure this is set in your .env
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model User {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String      @unique
+  password  String?
+  createdAt DateTime    @default(now())
+  savedPasswords Json     @default("[]")
+}
+
+// Embedded type for MongoDB
+type PasswordEntry {
+  passwordFor String
+  seed        String?
+  password    String
+  createdAt   DateTime @default(now())
+}
