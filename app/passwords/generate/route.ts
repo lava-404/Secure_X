@@ -1,43 +1,50 @@
-import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
+import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
 
 export async function POST(req: NextRequest) {
   try {
-    let { seed, length = 12 } = await req.json();
+    const { seed, length = 12 } = await req.json();
 
-    if (!seed || typeof seed !== 'string') {
-      return NextResponse.json({ error: 'Seed is required and must be a string' }, { status: 400 });
+    if (!seed || typeof seed !== "string") {
+      return NextResponse.json(
+        { error: "Seed is required and must be a string" },
+        { status: 400 }
+      );
     }
 
     // Ensure minimum length of 8
-    length = Math.max(length, 8);
+    const finalLength = Math.max(length, 8);
 
     // Character sets
-    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const numbers = '0123456789';
-    const allChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const allChars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
 
     // Deterministic pseudo-random function based on seed + index
     const prng = (seedStr: string, index: number) => {
-      const hash = crypto.createHash('sha256').update(seedStr + index).digest('hex');
+      const hash = crypto
+        .createHash("sha256")
+        .update(seedStr + index)
+        .digest("hex");
       return parseInt(hash.slice(0, 8), 16);
     };
 
     // Decide prefix/suffix lengths
     const seedLength = seed.length;
-    const remaining = length - seedLength;
+    const remaining = finalLength - seedLength;
     const prefixLen = Math.floor(remaining / 2);
     const suffixLen = remaining - prefixLen;
 
     // Generate prefix
-    let prefix = '';
+    let prefix = "";
     for (let i = 0; i < prefixLen; i++) {
       const idx = prng(seed, i) % allChars.length;
       prefix += allChars[idx];
     }
 
     // Generate suffix
-    let suffix = '';
+    let suffix = "";
     for (let i = 0; i < suffixLen; i++) {
       const idx = prng(seed, i + prefixLen) % allChars.length;
       suffix += allChars[idx];
@@ -76,7 +83,11 @@ export async function POST(req: NextRequest) {
     const password = `${prefix}${seed}${suffix}`;
 
     return NextResponse.json({ password });
-  } catch (err) {
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
+  } catch (error) {
+    console.error("Error generating password:", error);
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 }
+    );
   }
 }

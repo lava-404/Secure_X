@@ -7,49 +7,47 @@ export async function POST(req: Request) {
   try {
     const bodyText = await req.text();
     console.log("Received raw body:", bodyText);
-    let { passwordFor, seed, password, email } = JSON.parse(bodyText);
-    email = email.replace(/^"|"$/g, "");
 
+    const { passwordFor, seed, password, email } = JSON.parse(bodyText);
+    const emailValue = email.replace(/^"|"$/g, "");
 
     // Fetch existing user
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: { email: emailValue },
     });
 
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // TypeScript workaround for embedded array
-    const existingPasswords =
-      ((user as any)?.savedPasswords as Array<{
-        passwordFor: string;
-        seed?: string;
-        password: string;
-        createdAt: Date;
-      }>) || [];
+    // Avoid 'any' — define a proper type
+    type SavedPassword = {
+      passwordFor: string;
+      seed?: string;
+      password: string;
+      createdAt: Date;
+    };
 
-    const newPasswordEntry = {
+    const existingPasswords =
+      ((user as unknown as { savedPasswords?: SavedPassword[] })
+        ?.savedPasswords) || [];
+
+    const newPasswordEntry: SavedPassword = {
       passwordFor,
       seed,
       password,
       createdAt: new Date(),
     };
 
-    const updatedEntries = [...existingPasswords, newPasswordEntry];
+    const updatedEntries: SavedPassword[] = [
+      ...existingPasswords,
+      newPasswordEntry,
+    ];
 
-    // Update user with proper typing
     const updatedUser = await prisma.user.update({
-      where: { email },
+      where: { email: emailValue },
       data: {
         savedPasswords: updatedEntries,
-      } as {
-        savedPasswords: Array<{
-          passwordFor: string;
-          seed?: string;
-          password: string;
-          createdAt: Date;
-        }>;
       },
     });
 
