@@ -22,27 +22,29 @@ export default function Home() {
   <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-0"></div>
 
   {/* Header */}
-  <header className="sticky top-0 relative z-20 w-8/12 max-w-5xl mx-auto flex justify-between items-center px-8 sm:px-10 py-4 bg-white/2 backdrop-blur-sm border border-white/30 rounded-[50px] shadow-lg mt-12 lg:w-10/12">
-    <h1 className="text-lg font-bold text-white ">SecureX</h1>
-    <nav className="flex gap-4 sm:gap-6 text-lg text-white">
-    <Link href="/" className="flex items-center justify-center">
-          <span className="hidden sm:inline">Home</span>
-          <HomeIcon className="sm:hidden w-6 h-6" />
-        </Link>
-        <Link href="/vault" className="flex items-center justify-center">
-          <span className="hidden sm:inline">Vault</span>
-          <Vault className="sm:hidden w-6 h-6" />
-        </Link>
-        <Link href="/generator" className="flex items-center justify-center">
-          <span className="hidden sm:inline">Generate</span>
-          <Sparkles className="sm:hidden w-6 h-6" />
-        </Link>
-        <Link href="/info" className="flex items-center justify-center">
-          <span className="hidden sm:inline">Info</span>
-          <Info className="sm:hidden w-6 h-6" />
-        </Link>
-    </nav>
-  </header>
+  <header className="sticky top-0 z-20 w-[90%] max-w-5xl mx-auto flex justify-between items-center px-4 sm:px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-[30px] shadow-lg mt-6 sm:mt-12 lg:w-10/12">
+  <h1 className="text-base sm:text-lg font-bold text-white">SecureX</h1>
+  
+  <nav className="flex gap-3 sm:gap-6 text-sm sm:text-lg text-white">
+    <Link href="/" className="flex items-center justify-center hover:scale-105 transition">
+      <span className="hidden sm:inline">Home</span>
+      <HomeIcon className="sm:hidden w-5 h-5" />
+    </Link>
+    <Link href="/vault" className="flex items-center justify-center hover:scale-105 transition">
+      <span className="hidden sm:inline">Vault</span>
+      <Vault className="sm:hidden w-5 h-5" />
+    </Link>
+    <Link href="/generator" className="flex items-center justify-center hover:scale-105 transition">
+      <span className="hidden sm:inline">Generate</span>
+      <Sparkles className="sm:hidden w-5 h-5" />
+    </Link>
+    <Link href="/info" className="flex items-center justify-center hover:scale-105 transition">
+      <span className="hidden sm:inline">Info</span>
+      <Info className="sm:hidden w-5 h-5" />
+    </Link>
+  </nav>
+</header>
+
 
   {/* Hero Section */}
   <div className="relative z-10 width-1/2 mt-30 ml-10 lg:min-h-[40vh] min-h-[30vh] px-6 sm:px-10 md:px-20 ml-12 lg:ml-70 lg:mt-50">
