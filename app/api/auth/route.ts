@@ -8,6 +8,7 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   try {
     const { email, name } = await req.json();
+    console.log(email, name);
 
      if (!email) {
       return NextResponse.json(
