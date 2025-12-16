@@ -24,7 +24,7 @@ export default function Signup() {
           name: user.displayName,
         }),
       });
-
+      console.log(user.email);
       console.log("user logged", response);
       localStorage.setItem("user", JSON.stringify(user.email));
       router.push("/generator");
