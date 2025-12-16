@@ -9,6 +9,13 @@ export async function POST(req: Request) {
   try {
     const { email, name } = await req.json();
 
+     if (!email) {
+      return NextResponse.json(
+        { error: "Email not available from provider" },
+        { status: 400 }
+      );
+    }
+
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
