@@ -8,6 +8,7 @@ import Link from "next/link";
 import Demo from "./components/Demo"
 import SecurityPromise from "./components/PromiseSection"
 import Footer from "./components/Footer"
+import Navbar from "./components/Navbar";
 export default function Home() {
   const router = useRouter()
 
@@ -20,30 +21,7 @@ export default function Home() {
     <div className="relative bg-[url('/images/bg.png')] sm:bg-contain bg-cover sm:bg-cover bg-bottom bg-no-repeat min-h-screen text-white overflow-hidden pb-16">
   {/* Overlay */}
   <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-0"></div>
-
-  {/* Header */}
-  <header className="sticky top-0 z-20 w-[90%] max-w-5xl mx-auto flex justify-between items-center px-4 sm:px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-[30px] shadow-lg mt-6 sm:mt-12 lg:w-10/12">
-  <h1 className="text-base sm:text-lg font-bold text-white">SecureX</h1>
-  
-  <nav className="flex gap-3 sm:gap-6 text-sm sm:text-lg text-white">
-    <Link href="/" className="flex items-center justify-center hover:scale-105 transition">
-      <span className="hidden sm:inline">Home</span>
-      <HomeIcon className="sm:hidden w-5 h-5" />
-    </Link>
-    <Link href="/vault" className="flex items-center justify-center hover:scale-105 transition">
-      <span className="hidden sm:inline">Vault</span>
-      <Vault className="sm:hidden w-5 h-5" />
-    </Link>
-    <Link href="/generator" className="flex items-center justify-center hover:scale-105 transition">
-      <span className="hidden sm:inline">Generate</span>
-      <Sparkles className="sm:hidden w-5 h-5" />
-    </Link>
-    <Link href="/info" className="flex items-center justify-center hover:scale-105 transition">
-      <span className="hidden sm:inline">Info</span>
-      <Info className="sm:hidden w-5 h-5" />
-    </Link>
-  </nav>
-</header>
+  <Navbar></Navbar>
 
 
   {/* Hero Section */}

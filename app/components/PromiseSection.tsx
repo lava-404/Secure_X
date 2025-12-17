@@ -28,7 +28,7 @@ export default function SecurityPromise() {
   return (
     <section className="w-11/12 max-w-6xl mx-auto text-center py-24 text-white">
       {/* Title + tagline */}
-      <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+      <h2 className="text-5xl mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent font-instrument">
         Zero-Knowledge. Total Control.
       </h2>
       <p className="text-gray-300 text-xl mb-16">
@@ -44,7 +44,7 @@ export default function SecurityPromise() {
           >
             <div className="flex flex-col items-center justify-center">
               <div className="animate-pulse">{feat.icon}</div>
-              <h3 className="text-2xl font-semibold mt-3 mb-2 text-white">
+              <h3 className="text-2xl font-instrument mt-3 mb-2 text-white">
                 {feat.title}
               </h3>
               <p className="text-gray-400 text-base leading-relaxed">

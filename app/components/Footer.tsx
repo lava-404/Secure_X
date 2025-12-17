@@ -12,8 +12,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         {/* Logo + copyright */}
         <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text">
-            SecureX 🔒
+          <h2 className="font-instrument text-2xl font-bold bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text">
+            SecureX 
           </h2>
           <p className="text-sm mt-1 text-gray-500">© 2025 SecureX. All rights reserved.</p>
         </div>
