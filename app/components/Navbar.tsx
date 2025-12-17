@@ -34,7 +34,7 @@ export default function DashboardNavbar() {
     <nav className="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-md shadow-cyan-500/5">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Brand */}
-        <div className="flex items-center gap-2 text-cyan-400 font-bold text-xl tracking-wide">
+        <div className="flex items-center gap-2 text-cyan-400 text-xl tracking-wide font-instrument">
           <Lock size={22} className="text-cyan-400" /> SecureX
         </div>
 

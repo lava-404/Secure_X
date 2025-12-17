@@ -42,10 +42,10 @@ export default function Signup() {
       {/* Neon frame around form */}
       <form className="relative z-10 flex flex-col gap-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,255,0.1)] p-10 w-full max-w-md text-white transition-all duration-300 hover:shadow-[0_0_45px_rgba(0,255,255,0.2)]">
         <div className="text-center">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text">
+          <h1 className="font-instrument lg:text-5xl text-4xl bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text">
             Access Vault
           </h1>
-          <p className="text-sm text-gray-400 mt-2 tracking-wide">
+          <p className="text-sm text-gray-400 mt-2  tracking-wide">
             Your credentials, encrypted before they even leave your browser.
           </p>
         </div>
